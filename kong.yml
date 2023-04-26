@@ -1,0 +1,17 @@
+_format_version: "1.1"
+
+services:
+  - name: example_service
+    url: http://httpbin.org/post
+    routes:
+      - name: example_route
+        methods:
+          - POST
+        paths:
+          - /httpbin/post
+    plugins:
+      - name: request-transformer
+        config:
+          add:
+            body:
+              - secret:$(env.SECRET)

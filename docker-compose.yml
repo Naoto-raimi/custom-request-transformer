@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  kong:
+    build: .
+    container_name: dbless_kong
+    environment:
+      - KONG_NGINX_MAIN_ENV=ENV; env SECRET
+      - ENV=dev
+      - SECRET=secret
+    command: >
+      /bin/bash -c "
+      kong start"
+    restart: always
+    ports:
+      - 8000:8000
